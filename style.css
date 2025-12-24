@@ -232,7 +232,7 @@ form textarea::placeholder {
     position: relative;
 }
 
-.task h5 span{
+.task h5 span {
     color: white;
     position: absolute;
     top: -10px;
@@ -244,7 +244,8 @@ form textarea::placeholder {
     font-weight: 600;
     opacity: 0;
 }
-.task h5 span.true{
+
+.task h5 span.true {
     opacity: 1;
 }
 
@@ -256,7 +257,8 @@ form textarea::placeholder {
     border: none;
     cursor: pointer;
 }
-.mark-imp{
+
+.mark-imp {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -265,10 +267,8 @@ form textarea::placeholder {
     font-size: 14px;
 }
 
-.daily-planner-fullpage{
-    display: block;
-}
-.day-planner{
+
+.day-planner {
     background-color: var(--secondary);
     width: 100%;
     margin-top: 40px;
@@ -282,15 +282,16 @@ form textarea::placeholder {
     overflow-y: auto;
 }
 
-.day-planner .day-planner-time{
+.day-planner .day-planner-time {
     position: relative;
     display: flex;
     align-items: center;
     width: 49%;
     margin-bottom: 14px;
-    
+
 }
-.day-planner .day-planner-time input{
+
+.day-planner .day-planner-time input {
     padding: 16px 45px;
     width: 100%;
     background-color: var(--bg-surface);
@@ -300,9 +301,99 @@ form textarea::placeholder {
     font-size: 20px;
     padding-top: 28px;
 }
-.day-planner-time p{
+
+.day-planner-time p {
     font-size: 18px;
     position: absolute;
     top: 10%;
     left: 1%;
+}
+
+.motivational-fullpage {
+    display: block;
+    position: relative;
+    height: 100vh;
+}
+
+.motivation-container {
+    /* min-height: 250px; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 400px;
+    border-radius: 10px;
+    /* background-color: var(--accent); */
+    position: relative;
+}
+
+.motivation-container::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: 50px;
+    scale: 1.1;
+    background-color: var(--accent);
+    z-index: 9;
+    filter: blur(100px);
+}
+
+.motivation-container .motivation-wrapper {
+    position: absolute;
+    z-index: 10;
+    /* height: 100%; */
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--accent);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.motivation1 {
+    background-color: var(--bg-surface);
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 10px;
+    width: fit-content;
+}
+
+.motivation2 {
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.motivation2 h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--bg-surface);
+    font-style: italic;
+}
+
+.motivation3 {
+    padding: 0px 20px;
+    padding-bottom: 10px;
+}
+
+.motivation3 h2 {
+    font-size: 14px;
+}
+
+.motivation-wrapper img {
+    position: absolute;
+    right: 10%;
+    top: 4%;
+    width: 40px;
+    opacity: .4;
+}
+
+.motivation-fullpage-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }

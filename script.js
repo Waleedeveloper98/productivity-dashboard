@@ -25,64 +25,62 @@ function todoList() {
     let taskInput = document.querySelector(".addTask form input")
     let taskDetailsInput = document.querySelector(".addTask form textarea")
     let taskCheckbox = document.querySelector(".addTask form #checkbox")
+    let allTasks = document.querySelector(".allTasks")
 
-
-
-    var currentTask = [];
+    let currentTask = []
 
     if (localStorage.getItem("currentTask")) {
         currentTask = JSON.parse(localStorage.getItem("currentTask"))
     }
 
     function renderTask() {
-        let allTasks = document.querySelector(".allTasks")
-        let sum = "";
+        let sum = ""
 
         currentTask.forEach((curTask, index) => {
-            sum += `<div class="task">
-        <h5>${curTask.task} <span class=${curTask.imp}>Imp</span></h5>
-                        <button id=${index}>Mark as Completed</button>
-                        </div>`
+            sum += `
+            <div class="task">
+                <h5>${curTask.task} <span>${curTask.imp ? "Imp" : ""}</span></h5>
+                <button data-index="${index}">Mark as Completed</button>
+            </div>`
         })
+
         allTasks.innerHTML = sum
         localStorage.setItem("currentTask", JSON.stringify(currentTask))
     }
+
     renderTask()
 
+    // ✅ ONE TIME delete handler (EVENT DELEGATION)
+    allTasks.addEventListener("click", function (e) {
+        if (e.target.tagName === "BUTTON") {
+            let index = e.target.dataset.index
+            currentTask.splice(index, 1)
+            renderTask()
+        }
+    })
 
-
-
+    // ✅ Add task
     form.addEventListener("submit", function (e) {
         e.preventDefault()
+
+        if (!taskInput.value.trim()) return
+
         currentTask.push({
             task: taskInput.value,
             details: taskDetailsInput.value,
             imp: taskCheckbox.checked
         })
-        renderTask()
 
-        let markCompletedButton = document.querySelectorAll(".task button")
-        markCompletedButton.forEach((markButton) => {
-            markButton.addEventListener("click", function () {
-                currentTask.splice(markButton.id, 1)
-                console.log(currentTask)
-                renderTask()
-                location.reload()
-            })
-        })
+        renderTask()
 
         taskCheckbox.checked = false
         taskDetailsInput.value = ""
         taskInput.value = ""
     })
-
-
-
-
-
 }
 
 todoList()
+
 
 
 function dailyPlanner() {
@@ -121,3 +119,28 @@ function dailyPlanner() {
     })
 }
 dailyPlanner()
+
+
+
+
+function motivationalQuote() {
+    let motivationQuote = document.querySelector(".motivation2 h1")
+    let motivationAuthor = document.querySelector(".motivation3 h2")
+
+
+    async function fetchQuote() {
+        motivationQuote.innerHTML = "Loading..."
+        motivationAuthor.innerHTML = ""
+
+        let res = await fetch('https://dummyjson.com/quotes/random')
+        let quoteData = await res.json()
+
+        motivationQuote.innerHTML = quoteData.quote
+        motivationAuthor.innerHTML = quoteData.author
+    }
+    fetchQuote()
+}
+
+
+let motivationCard = document.querySelector(".motivation")
+motivationCard.addEventListener("click",motivationalQuote)
