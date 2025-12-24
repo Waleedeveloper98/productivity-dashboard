@@ -131,9 +131,6 @@ section.allElems {
     font-size: 20px;
 }
 
-.todo-list-fullpage {
-    display: block;
-}
 
 .todo-list-fullpage h2 {
     font-size: 30px;
@@ -266,4 +263,46 @@ form textarea::placeholder {
     white-space: nowrap;
     gap: 10px;
     font-size: 14px;
+}
+
+.daily-planner-fullpage{
+    display: block;
+}
+.day-planner{
+    background-color: var(--secondary);
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 10px;
+    height: 85%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+.day-planner .day-planner-time{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 49%;
+    margin-bottom: 14px;
+    
+}
+.day-planner .day-planner-time input{
+    padding: 16px 45px;
+    width: 100%;
+    background-color: var(--bg-surface);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    padding-top: 28px;
+}
+.day-planner-time p{
+    font-size: 18px;
+    position: absolute;
+    top: 10%;
+    left: 1%;
 }
