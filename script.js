@@ -143,4 +143,76 @@ function motivationalQuote() {
 
 
 let motivationCard = document.querySelector(".motivation")
-motivationCard.addEventListener("click",motivationalQuote)
+motivationCard.addEventListener("click", motivationalQuote)
+
+
+
+let timerInterval = null;
+let totalSeconds = 25 * 60;
+let timer = document.querySelector(".pomo-timer h1")
+let startTimerButton = document.querySelector(".start-timer")
+let pauseTimerButton = document.querySelector(".pause-timer")
+let resetTimerButton = document.querySelector(".reset-timer")
+let sessionRole = document.querySelector(".session")
+let isWorkSession = true;
+
+
+function updateTime() {
+    let minutes = Math.floor(totalSeconds / 60)
+    let seconds = totalSeconds % 60
+    timer.innerHTML = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+
+}
+updateTime()
+
+function startTimer() {
+    clearInterval(timerInterval)
+
+
+    if (isWorkSession) {
+        totalSeconds = 25 * 60;
+        timerInterval = setInterval(() => {
+            if (totalSeconds > 0) {
+                totalSeconds--
+                updateTime()
+            } else {
+                isWorkSession = false
+                timer.innerHTML = `05:00`
+                sessionRole.innerHTML = "Break Time"
+                sessionRole.style.backgroundColor = "var(--primary)"
+                clearInterval(timerInterval)
+            }
+        }, 1000);
+
+    } else {
+        totalSeconds = 5 * 60;
+        timerInterval = setInterval(() => {
+            if (totalSeconds > 0) {
+                totalSeconds--
+                updateTime()
+            } else {
+                isWorkSession = true
+                timer.innerHTML = `25:00`
+                sessionRole.innerHTML = "Work Session"
+                sessionRole.style.backgroundColor = "var(--secondary)"
+                clearInterval(timerInterval)
+            }
+        }, 1000);
+    }
+
+
+
+
+}
+function pauseTimer() {
+    clearInterval(timerInterval)
+}
+function resetTimer() {
+    totalSeconds = 25 * 60
+    clearInterval(timerInterval)
+    updateTime()
+}
+
+startTimerButton.addEventListener("click", startTimer)
+pauseTimerButton.addEventListener("click", pauseTimer)
+resetTimerButton.addEventListener("click", resetTimer)
